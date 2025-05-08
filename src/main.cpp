@@ -1,5 +1,5 @@
 #include "Display/Renderer.h"
-#include "Utility/utilities.h"
+//#include "Utility/utilities.h"
 
 int main()
 {
@@ -29,10 +29,10 @@ int main()
 
     while (!windows.empty())
     {
-        for (auto it = windows.begin(); it != windows.end();) 
+        for (auto it = windows.begin(); it != windows.end();)
         {
             it->get()->pollEvents();
-            if (!(*it)->isOpen()) 
+            if (!(*it)->isOpen())
             {
                 it = windows.erase(it);
             }

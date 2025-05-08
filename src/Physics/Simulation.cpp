@@ -86,8 +86,8 @@ void Simulation::integrate(RigidBody& body)
 	sf::Vector2f velocity = body.position - body.previous_position;
 	body.previous_position = body.position;
 	body.position += velocity * time_step;
-	body.angle += body.angular_velocity * time_step;
-	body.angular_velocity = 0; // Reset angular velocity after integration
+	//body.angle += body.angular_velocity * time_step;
+	//body.angular_velocity = 0; // Reset angular velocity after integration
 }
 
 bool Simulation::checkCollision(RigidBody& bodyA, RigidBody& bodyB)
@@ -102,8 +102,3 @@ void Simulation::resolveCollision(RigidBody& bodyA, RigidBody& bodyB)
 void Simulation::applyConstraint(RigidBody& bodyA, RigidBody& bodyB)
 {
 }
-
-
-
-
-

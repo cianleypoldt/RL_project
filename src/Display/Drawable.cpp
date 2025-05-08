@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include <cmath>
 
 Drawable::Drawable(const sf::VertexArray& shape, sf::Vector2f initialPos)
     : m_vertexArray(shape) {
@@ -66,7 +67,7 @@ bool DrawableShape::contains(sf::Vector2f point) const {
     return inside;
 }
 
-sf::ConvexShape& DrawableShape::convex() 
+sf::ConvexShape& DrawableShape::convex()
 {
     return m_convexShape;
 }

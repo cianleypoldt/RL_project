@@ -1,16 +1,15 @@
 #include "Renderer.h"
 #include "../Utility/utilities.h"
 #include <cmath>
-#include <iostream>
-
+#include <vector>
 
 Renderer::Renderer(const RendererConfig& _config)
     : config(_config), settings(), m_window()
-{    
+{
     settings.antiAliasingLevel = 8;
-    
+
     m_window.create(sf::VideoMode(config.dimensions), config.title, sf::Style::None ,sf::State::Windowed, settings);
-    m_window.setFramerateLimit(config.fpsLimit);    
+    m_window.setFramerateLimit(config.fpsLimit);
 }
 
 void Renderer::addBackgroundStatic(const sf::VertexArray& shape, sf::Vector2f pos) {
@@ -55,8 +54,8 @@ std::shared_ptr<DrawableShape> Renderer::addRoundedRect(sf::Vector2f pos, sf::Ve
 }
 
 void Renderer::removeDrawable(const std::shared_ptr<DrawableBase>& drawable) {
-    auto it = std::remove(m_drawables.begin(), m_drawables.end(), drawable);
-    m_drawables.erase(it, m_drawables.end());
+    //auto it = std::remove(m_drawables.begin(), m_drawables.end(), drawable);
+    //m_drawables.erase(it, m_drawables.end());
 }
 
 void Renderer::clear() {
@@ -80,7 +79,7 @@ bool Renderer::isOpen() const {
     return m_window.isOpen();
 }
 
-void Renderer::pollEvents() 
+void Renderer::pollEvents()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
         m_window.close();
@@ -93,7 +92,7 @@ void Renderer::pollEvents()
         }
     }
 
-    if (selected) 
+    if (selected)
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
             windowMove({ -20, 0 });
@@ -127,7 +126,7 @@ sf::Vector2i Renderer::windowPos()
 void Renderer::windowTo(sf::Vector2i newPos)
 {
     const static sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-
+    bool active = m_window.setActive(true);
     int newX = desktop.size.x / 4;
     int newY = desktop.size.y / 4;
 
